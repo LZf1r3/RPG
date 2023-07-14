@@ -1,0 +1,9 @@
+Criando um jogo de rpg
+
+tema da historia: guerra medieval contra o reino do medieval
+comeco da historia:
+
+efeitos de comidas:
+    1. envenenado
+    2. Feliz
+    3. 
