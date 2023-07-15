@@ -1,5 +1,5 @@
 #importando classe mae do arquivo itens.py
-from Itens.itens import itens as it
+from Itens.itens import itens_class as it
 import Itens.itens as itemlist
 #Definindo armaduras como derivada de itens e adicionando variaveis
 class Armaduras(it):

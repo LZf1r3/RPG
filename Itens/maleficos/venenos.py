@@ -1,5 +1,5 @@
 #importando classe mae do arquivo itens.py
-from itens import itens as it
+from Itens.itens import itens_class as it
 import Itens.itens as itemlist
 #Definindo que venenos deriva de itens e tambem adicionando variaveis
 class Venenos(it):
