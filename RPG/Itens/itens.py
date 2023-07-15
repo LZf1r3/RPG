@@ -22,9 +22,10 @@ def adicionar_item_name(item_name):
 
 def writing_itens():
     for item in itens_list_name:
-            with open("Itens/itens.txt","r") as file_r:
+            with open("RPG/Itens/itens.txt","r") as file_r:
                 if f"{item}\n" in file_r.readlines():
                     print(f"O item {item} ja esta salvo!")
                 else:
-                     with open("Itens/itens.txt","a") as file_w:
+                     with open("RPG/Itens/itens.txt","a") as file_w:
                           file_w.write(f"{item}\n")
+

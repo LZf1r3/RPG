@@ -1,13 +1,14 @@
 from Personagens.personagens import personagens
-class Main_Character(personagens):
+class Main_Character_class(personagens):
     def __init__(self, name, life, damage, mana, saturation, armor):
         super().__init__(name, life, damage)
         self.mana = mana
         self.saturation = saturation
         self.armor = armor
+        self.inventario = []
 
-def main_character(classe):
-    from inventario.inv import wearing
+def Main_character(classe):
+    from inventario.inv import em_uso    
     name = str(input("(Anja) Como voce gostaria de ser chamado neste novo mundo? ")).title()
-    main_character = Main_Character(name, classe.life, classe.base_damage, classe.mana, 0, wearing.defense)
+    main_character = Main_Character_class(name, classe.life, classe.base_damage, classe.mana, 0, em_uso.defense)
     print(f"Name: {main_character.name}\nLife: {main_character.life}\nMana: {main_character.mana}\nDamage: {main_character.damage}\nArmor: {main_character.armor}")

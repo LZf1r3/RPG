@@ -7,5 +7,3 @@ import Itens.armamentos.roupas
 import Itens.maleficos.comidas
 import Itens.maleficos.venenos
 import Itens.itens
-print(Itens.itens.itens_list_name)
-Itens.itens.writing_itens()
