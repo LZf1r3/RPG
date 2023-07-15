@@ -30,14 +30,12 @@ mago = Classes("Mago", 5, 100, 100, 4, mago_file.read())
 #Criando lista das classes que e mto importante 
 num_classes = [draconico,elfo,feral,mago]
 
-#Funcao de escrever classes em um txt / OBS.:(Esta funcao esta com um erro de reescrever mesmo ja contendo o conteudo. Esta funcao 
-# 'e extremamente importante para a finalizacao do arquivo class_selector.py)
+#Funcao de escrever classes em um txt
 def writing_classes():
-    with open("Classes_folder/Playable_classes.txt","r") as file_r:
         for classe in num_classes:
-            if f"{classe.name}\n" in file_r.readlines():
-                print(f"The class {classe.name} is already in the file!")
-            else:
-                with open("Classes_folder/Playable_classes.txt","a") as file_a:
-                    file_a.write(f"{classe.name}\n")
-writing_classes()
+            with open("Classes_folder/Playable_classes.txt","r") as file_r:
+                if f"{classe.name}\n" in file_r.readlines():
+                    print(f"A classe {classe.name} ja esta salva!")
+                else:
+                     with open("Classes_folder/Playable_classes.txt","a") as file_w:
+                          file_w.write(f"{classe.name}\n")

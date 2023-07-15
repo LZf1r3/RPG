@@ -1,0 +1,1 @@
+print("Bem-vindo ao jogo de rpg. Neste jogo voce estara desfrutando de uma aventura cheia de misterios e segredos. Por gentileza digitar 'rules' ")

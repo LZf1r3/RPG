@@ -2,6 +2,3 @@ Draconico
 Elfo
 Feral
 Mago
-Elfo
-Feral
-Mago
