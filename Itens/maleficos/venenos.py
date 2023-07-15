@@ -1,6 +1,6 @@
 #importando classe mae do arquivo itens.py
 from itens import itens as it
-
+import Itens.itens as itemlist
 #Definindo que venenos deriva de itens e tambem adicionando variaveis
 class Venenos(it):
     def __init__(self, name, damage, noise, tier, effect, duration):
@@ -22,3 +22,6 @@ dano_instantanio_III = Venenos("Dano-Instantanio III", 50, 0, "III", "Damage", 1
 
 #enlistando venenos
 venenos = [veneno_I,veneno_II,veneno_III,dano_instantanio_I,dano_instantanio_II,dano_instantanio_III]
+for veneno in venenos:
+    itemlist.adicionar_item_address(veneno)
+    itemlist.adicionar_item_name(veneno.name)
