@@ -100,6 +100,7 @@ def getting_action():
     if action == "comer":
         eating()
 
+#Criando introducao basica para o jogo
 def introducao():
     print("Apos ter ido em uma festa e ter virado a noite com seus amigos, voce acorda em uma sala branca com uma mulher que aparenta ser um anjo.\n'Vejo que finalmente acordou' Exclamou a mulher.")
     resposta_1 = str(input("Voce decide perguntar:\n(1)Onde estou?\n(2)O que aconteceu?\n(3)Quem é você?"))
