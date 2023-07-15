@@ -1,10 +1,13 @@
+#imporatndo random para ser o dado
 import random
+
 #Classe dos dados utilizados no Rpg
 class Dados:
     def __init__(self, numero_de_lados, nome):
         self.lados = numero_de_lados
         self.name = nome
         self.buff = 0
+        
     #Rodando os numeros dos dados
     @property
     def rodando_dados(self):

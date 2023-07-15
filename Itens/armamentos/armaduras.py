@@ -1,4 +1,7 @@
+#importando classe mae do arquivo itens.py
 from itens import itens as it
+
+#Definindo armaduras como derivada de itens e adicionando variaveis
 class Armaduras(it):
     def __init__(self, name, damage, noise, tier, defense, weight, mana):
         super().__init__(name, damage, noise, tier)
