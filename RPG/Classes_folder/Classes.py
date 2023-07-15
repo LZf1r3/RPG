@@ -16,10 +16,10 @@ class Classes:
                 #print(classe.info)
 
 #Criando variaveis de leitura do arquivo txt das classes onde tem a informacao necessaria delas
-drac_file = open("Classes_folder/Classes_info_folder/Draconico.txt","r")
-elfo_file = open("Classes_folder/Classes_info_folder/Elfo.txt","r")
-fera_file = open("Classes_folder/Classes_info_folder/Feral.txt","r")
-mago_file = open("Classes_folder/Classes_info_folder/Mago.txt","r")
+drac_file = open("RPG/Classes_folder/Classes_info_folder/Draconico.txt","r")
+elfo_file = open("RPG/Classes_folder/Classes_info_folder/Elfo.txt","r")
+fera_file = open("RPG/Classes_folder/Classes_info_folder/Feral.txt","r")
+mago_file = open("RPG/Classes_folder/Classes_info_folder/Mago.txt","r")
 
 #Definindo as classes
 draconico = Classes("Draconico", 7, 125, 25, 10,drac_file.read())
@@ -33,9 +33,9 @@ num_classes = [draconico,elfo,feral,mago]
 #Funcao de escrever classes em um txt
 def writing_classes():
         for classe in num_classes:
-            with open("Classes_folder/Playable_classes.txt","r") as file_r:
+            with open("RPG/Classes_folder/Playable_classes.txt","r") as file_r:
                 if f"{classe.name}\n" in file_r.readlines():
                     print(f"A classe {classe.name} ja esta salva!")
                 else:
-                     with open("Classes_folder/Playable_classes.txt","a") as file_w:
+                     with open("RPG/Classes_folder/Playable_classes.txt","a") as file_w:
                           file_w.write(f"{classe.name}\n")

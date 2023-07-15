@@ -24,7 +24,7 @@ def escolhendo_classe():
     elif qual_classe == Classes.draconico.name:
         Draconico()
     else:
-        with open("Classes_folder\Playable_classes.txt","r") as file_r:
+        with open("RPG/Classes_folder\Playable_classes.txt","r") as file_r:
             if f"{qual_classe}\n" not in file_r.readlines():
                 print(f"A classe {qual_classe} nao e recognizada como uma classe jogavel. Por favor acessar menu help.")
                 escolhendo_classe()
@@ -33,26 +33,26 @@ def escolhendo_classe():
 
 def Elfo():
     print("Classe Selecionada: Elfo")
-    pr.main_character(Classes.elfo)
+    pr.Main_character(Classes.elfo)
 
 def Mago():
     print("Classe Selecionada: Mago")
-    pr.main_character(Classes.mago)
+    pr.Main_character(Classes.mago)
 
 def Draconico():
     print("Classe Selecionada: Draconico")
-    pr.main_character(Classes.draconico)
+    pr.Main_character(Classes.draconico)
 
 def Feral():
     print("Classe Selecionada: Feral")
-    pr.main_character(Classes.feral)
+    pr.Main_character(Classes.feral)
 #Funcao para imprimir informacoes sobre as classes
 
 def help(qual_classe):
     print("Qual classe deseja saber as informacoes?")
     loop()
     qual_classe = str(input(":")).title().strip()
-    with open("Classes_folder/Playable_classes.txt","r") as file:
+    with open("RPG/Classes_folder/Playable_classes.txt","r") as file:
         if f"{qual_classe}\n" in file.readlines():
             for classe in Classes.num_classes:
                 if classe.name == qual_classe:
