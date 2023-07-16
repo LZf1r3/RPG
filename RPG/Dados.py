@@ -6,7 +6,7 @@ class Dados:
     def __init__(self, numero_de_lados, nome):
         self.lados = numero_de_lados
         self.name = nome
-        self.buff = 0
+        self.buff = 20
         
     #Rodando os numeros dos dados
     @property
