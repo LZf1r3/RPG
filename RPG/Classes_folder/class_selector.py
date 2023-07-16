@@ -31,6 +31,7 @@ def escolhendo_classe():
             else:
                 print('Error with statement')
 
+#Definindo as classes de acordo com a escolha do protagonista
 def Elfo():
     print("Classe Selecionada: Elfo")
     pr.Main_character(Classes.elfo)
@@ -46,8 +47,8 @@ def Draconico():
 def Feral():
     print("Classe Selecionada: Feral")
     pr.Main_character(Classes.feral)
-#Funcao para imprimir informacoes sobre as classes
 
+#Funcao para imprimir informacoes sobre as classes
 def help(qual_classe):
     print("Qual classe deseja saber as informacoes?")
     loop()
