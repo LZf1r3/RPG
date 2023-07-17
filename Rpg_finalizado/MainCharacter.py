@@ -1,37 +1,3 @@
-#imporatndo random para ser o dado
-import random
-
-#Classe dos dados utilizados no Rpg
-class Dados:
-    def __init__(self, numero_de_lados, nome):
-        self.lados = numero_de_lados
-        self.name = nome
-        self.buff = 0
-        self.resultado = random.randint(self.buff if self.buff >= 1 else 1 ,self.lados)
-        
-    #Rodando os numeros dos dados
-    @property
-    def rodando_dados(self):
-        print(f"{self.name}: {self.resultado}")
-        
-#Definindo os valores e os dados existentes
-D4 = Dados(4,"D4")
-D6 = Dados(6,"D6")
-D8 = Dados(8,"D8")
-D10 = Dados(10,"D10")
-D12 = Dados(12,"D12")
-D20 = Dados(20,"D20")
-
-#Enlistando os dados
-dados = [D4,D6,D8,D10,D12,D20]
-
-#Definindo qual dado
-def definindo_dado():
-    tipo_dado = str(input("Qual o tipo de dado?\n")).capitalize().strip()
-    #loop para verificar qual o dado que foi selecionado
-    for dado in dados:
-        if dado.name == tipo_dado: 
-            dado.rodando_dados
 
 class Classes:
     def __init__(self, name, damage, life, mana, noise, info):
@@ -75,7 +41,7 @@ def writing_classes():
                           file_w.write(f"{classe.name}\n")
 
 class Main_character_class():
-    def __init__(self, classe,vida, dano, mana, saturacao, armadura, armadura_mana):
+    def __init__(self, classe,vida, dano, mana, saturacao, armadura, armadura_mana,estamina):
         self.nome = str(input("Como voce gostaria de se chamar neste novo mundo? "))
         self.classe = classe
         self.vida = vida
@@ -85,31 +51,51 @@ class Main_character_class():
         self.armadura = armadura
         self.armadura_mana = armadura_mana
         self.inventario = []
+        self.level = 1
+        self.estamina = estamina
 
     def atacar(self,espada,player,inimigo):
+        
         while player.vida >=0 and inimigo.vida >=0:
-            print("Qual ataque voce gostaria de fazer? ")
+            print(f"Voce encontrou um {inimigo.nome} level:{inimigo.level}")
+            print("Qual ataque voce gostaria de fazer? \n")
             for ataque in espada_de_ouro.ataques:
-                print(ataque.nome)
+                print(f"{ataque.nome}\nDano:{ataque.dano} Estamina:{ataque.estamina}\n")
             qual_ataque = str(input(".:"))
             for ataque in espada_de_ouro.ataques:
+                import Dados_file as dados
                 if qual_ataque == ataque.nome:
-                    inimigo.vida = inimigo.vida - (ataque.dano - D4.resultado)
-            player.vida -= inimigo.dano
-            print(f"A vida do inimigo e:{inimigo.vida}")
-            print(f"Sua vida e: {player.vida}")
+                    if self.estamina >= ataque.estamina:                            
+                        if self.level >= inimigo.level:
+                            inimigo.vida = inimigo.vida - (ataque.dano + dados.D4.resultado)
+                            self.estamina -= ataque.estamina
+                        elif inimigo.level >= self.level:
+                            inimigo.vida = inimigo.vida - (ataque.dano - dados.D6.resultado)
+                            self.estamina -= ataque.estamina
+            if self.level >= inimigo.level:
+                import Dados_file as dados
+                self.vida -= (inimigo.dano+((inimigo.dano+inimigo.level)/2))
+            elif inimigo.level >= self.level:
+                import Dados_file as dados
+                self.vida -= inimigo.dano+((inimigo.dano*(inimigo.level/2)) + dados.D6.resultado)
+            if self.estamina <= ataque.estamina:
+                print(f"Voce nao possui estamina para o ataque: {ataque.nome}")
+            print(f"A vida restante do seu inimigo e: {inimigo.vida}")
+            print(f"Sua vida e: {player.vida}\n sua estamina restante e de: {self.estamina}")
             if inimigo.vida <= 0:
                 print("Voce matou seu inimigo!")
+                print("Voce recebeu uma cura de 10% do seu hp")
+                self.vida += (self.vida*0.10)
             elif self.vida <= 0:
                 print("Game Over!")
                 exit()
 
 class inimigos():
-    def __init__(self, nome, vida, dano):
+    def __init__(self, nome, vida, dano,level):
         self.nome = nome
         self.vida = vida
         self.dano = dano
-
+        self.level = level
     def atacar(self, alvo):
         alvo.vida -= self.dano
         print(f"O inimigo {self.nome} atacou {alvo.nome} e causou {self.dano} pontos de dano!")
@@ -121,8 +107,8 @@ with open("Rpg_finalizado/Playable_classes.txt","r") as file:
             if f"{qual_classe}\n" == line:
                 for classe in num_classes:
                     if qual_classe == classe.name:
-                        player = Main_character_class(qual_classe,classe.life,classe.base_damage,classe.mana,0,2,3)
-                        print(f"Player:{player.nome}\nClasse:{player.classe}\nVida:{player.vida}\nDano:{player.dano}\nMana:{player.mana}\nSaturacao:{player.saturacao}\nArmadura-mana:{player.armadura_mana}\nArmadura-defesa:{player.armadura}\n\n")
+                        player = Main_character_class(qual_classe,classe.life,classe.base_damage,classe.mana,0,2,3,100)
+                        print(f"Player:{player.nome}\nClasse:{player.classe}\nVida:{player.vida}\nEstamina:{player.estamina}\nDano:{player.dano}\nMana:{player.mana}\nSaturacao:{player.saturacao}\nArmadura-mana:{player.armadura_mana}\nArmadura-defesa:{player.armadura}\n\n")
                     else:
                         pass
             else:
@@ -152,5 +138,5 @@ golpe_flamejante_espada = ataques_espadas("Golpe Flamejante", 30, 50)
 danca_das_laminas_espada = ataques_espadas("Dança das Lâminas", 15, 15)
 
 espada_de_ouro = espadas("Espada_de_ouro",5,[ataque_rapido_espada,golpe_flamejante_espada,danca_das_laminas_espada])
-inimigo = inimigos("Goblin", 50, 10)
+inimigo = inimigos("Goblin", 50, 6.5,10)
 player.atacar(espada_de_ouro,player,inimigo)
