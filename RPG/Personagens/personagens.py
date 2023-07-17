@@ -5,4 +5,4 @@ class personagens:
         self.life = life
         self.damage = damage
 
-primeiro_boss = personagens("Gordon", 75, 4)
+

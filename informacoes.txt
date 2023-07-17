@@ -7,3 +7,72 @@ efeitos de comidas:
     1. envenenado
     2. Feliz
     3. 
+
+
+
+Error python code;
+
+ #definindo loop de impressao das classes no terminal
+    def loop():
+        x = 1
+        for classe in Classes.num_classes: #importando lista das classes para o loop de for
+            print(f"{x}. {classe.name}")
+            x+=1
+
+    #Escolhendo a classe de jogo / OBS.:(Error no final que esta sendo resolvido no arquivo Classes.py onde estou tendando escrever o nome das classes em um txt e depois verificar se ja existe.)
+
+    print("Please choose one of the following races to be reborn with: ")
+    qual_classe = str(input("Digite o nome da classe ou digite 'help' para saber as informacoes sobre uma determinada classe.\n")).strip().title()
+    if qual_classe == "Help":
+        help(qual_classe)
+    elif qual_classe == Classes.elfo.name:
+        
+        print("Classe Selecionada: Elfo")
+        name = str(input("(Anja) Como voce gostaria de ser chamado neste novo mundo? ")).title()
+        main_character = Main_Character_class(name, Classes.elfo.life, Classes.elfo.base_damage, Classes.elfo.mana, 0, em_uso.defense, em_uso.mana)
+        print(f"Name: {main_character.name}\nLife: {main_character.life}\nMana: {main_character.mana}\nDamage: {main_character.damage}\nArmor: {main_character.armor}\nArmor-Mana: {main_character.mana_armor}")
+
+    elif qual_classe == Classes.mago.name:
+        
+        print("Classe Selecionada: Mago")
+        name = str(input("(Anja) Como voce gostaria de ser chamado neste novo mundo? ")).title()
+        main_character = Main_Character_class(name, Classes.mago.life, Classes.mago.base_damage, Classes.mago.mana, 0, em_uso.defense, em_uso.mana)
+        print(f"Name: {main_character.name}\nLife: {main_character.life}\nMana: {main_character.mana}\nDamage: {main_character.damage}\nArmor: {main_character.armor}\nArmor-Mana: {main_character.mana_armor}")
+
+    elif qual_classe == Classes.feral.name:
+        
+        print("Classe Selecionada: Feral")
+        name = str(input("(Anja) Como voce gostaria de ser chamado neste novo mundo? ")).title()
+        main_character = Main_Character_class(name, Classes.feral.life, Classes.feral.base_damage, Classes.feral.mana, 0, em_uso.defense, em_uso.mana)
+        print(f"Name: {main_character.name}\nLife: {main_character.life}\nMana: {main_character.mana}\nDamage: {main_character.damage}\nArmor: {main_character.armor}\nArmor-Mana: {main_character.mana_armor}")
+
+    elif qual_classe == Classes.draconico.name:
+        
+        print("Classe Selecionada: Elfo")
+        name = str(input("(Anja) Como voce gostaria de ser chamado neste novo mundo? ")).title()
+        main_character = Main_Character_class(name, Classes.feral.life, Classes.feral.base_damage, Classes.feral.mana, 0, em_uso.defense, em_uso.mana)
+        print(f"Name: {main_character.name}\nLife: {main_character.life}\nMana: {main_character.mana}\nDamage: {main_character.damage}\nArmor: {main_character.armor}\nArmor-Mana: {main_character.mana_armor}")
+
+    else:
+        with open("RPG/Classes_folder\Playable_classes.txt","r") as file_r:
+            if f"{qual_classe}\n" not in file_r.readlines():
+                print(f"A classe {qual_classe} nao e recognizada como uma classe jogavel. Por favor acessar menu help.")
+                exit()
+            else:
+                print('Error with statement')
+
+    #Funcao para imprimir informacoes sobre as classes
+    def help(qual_classe):
+        print("Qual classe deseja saber as informacoes?")
+        menu.loop()
+        qual_classe = str(input(":")).title().strip()
+        with open("RPG/Classes_folder/Playable_classes.txt","r") as file:
+            if f"{qual_classe}\n" in file.readlines():
+                for classe in Classes.num_classes:
+                    if classe.name == qual_classe:
+                        print(classe.info)
+                        menu()
+            else:
+                print(f"The class {qual_classe} is not recognized as a playable class! Please try again")
+                menu()
+
