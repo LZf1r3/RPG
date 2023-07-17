@@ -7,12 +7,12 @@ class Dados:
         self.lados = numero_de_lados
         self.name = nome
         self.buff = 0
+        self.resultado = random.randint(self.buff if self.buff >= 1 else 1 ,self.lados)
         
     #Rodando os numeros dos dados
     @property
     def rodando_dados(self):
-        dado_func = random.randint(self.buff if self.buff >= 1 else 1 ,self.lados)
-        print(f"{self.name}: {dado_func}")
+        print(f"{self.name}: {self.resultado}")
         
 #Definindo os valores e os dados existentes
 D4 = Dados(4,"D4")
@@ -94,10 +94,15 @@ class Main_character_class():
             qual_ataque = str(input(".:"))
             for ataque in espada_de_ouro.ataques:
                 if qual_ataque == ataque.nome:
-                    inimigo.vida = inimigo.vida - (ataque.dano - D4.rodando_dados)
-                    print(f"A vida do inimigo e:{inimigo.vida}")
-                else:
-                    pass
+                    inimigo.vida = inimigo.vida - (ataque.dano - D4.resultado)
+            player.vida -= inimigo.dano
+            print(f"A vida do inimigo e:{inimigo.vida}")
+            print(f"Sua vida e: {player.vida}")
+            if inimigo.vida <= 0:
+                print("Voce matou seu inimigo!")
+            elif self.vida <= 0:
+                print("Game Over!")
+                exit()
 
 class inimigos():
     def __init__(self, nome, vida, dano):
@@ -117,7 +122,7 @@ with open("Rpg_finalizado/Playable_classes.txt","r") as file:
                 for classe in num_classes:
                     if qual_classe == classe.name:
                         player = Main_character_class(qual_classe,classe.life,classe.base_damage,classe.mana,0,2,3)
-                        print(f"Player:{player.nome}\nClasse:{player.classe}\nVida:{player.vida}\nDano:{player.dano}\nMana:{player.mana}\nSaturacao:{player.saturacao}\nArmadura-mana:{player.armadura_mana}\nArmadura-defesa:{player.armadura}")
+                        print(f"Player:{player.nome}\nClasse:{player.classe}\nVida:{player.vida}\nDano:{player.dano}\nMana:{player.mana}\nSaturacao:{player.saturacao}\nArmadura-mana:{player.armadura_mana}\nArmadura-defesa:{player.armadura}\n\n")
                     else:
                         pass
             else:
