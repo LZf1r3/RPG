@@ -15,6 +15,7 @@ class Dados:
         print(f"{self.name}: {self.resultado}")
         
 #Definindo os valores e os dados existentes
+D0 = Dados(4,"D0")
 D4 = Dados(4,"D4")
 D6 = Dados(6,"D6")
 D8 = Dados(8,"D8")

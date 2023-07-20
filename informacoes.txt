@@ -76,3 +76,48 @@ Error python code;
                 print(f"The class {qual_classe} is not recognized as a playable class! Please try again")
                 menu()
 
+
+-------------------------------------------------------------------------------------------------------------------------
+while player.vida >=0 and inimigo.vida >=0:
+            print(f"Voce encontrou um {inimigo.nome} level:{inimigo.level}")
+            print("Qual ataque voce gostaria de fazer? \n")
+            for ataque in espada_de_ouro.ataques:
+                print(f"{ataque.nome}\nDano:{ataque.dano} Estamina:{ataque.estamina}\n")
+            qual_ataque = str(input(".:"))
+            for ataque in espada_de_ouro.ataques:
+                import Dados_file as dados
+                if qual_ataque == ataque.nome:
+                    if self.estamina >= ataque.estamina:                            
+                        if self.level >= inimigo.level:
+                            inimigo.vida = inimigo.vida - (ataque.dano + dados.D4.resultado)
+                            self.estamina -= ataque.estamina
+                        elif inimigo.level >= self.level:
+                            inimigo.vida = inimigo.vida - (ataque.dano - dados.D6.resultado)
+                            self.estamina -= ataque.estamina
+                        
+
+
+
+
+
+
+
+
+                        
+            if self.level >= inimigo.level:
+                import Dados_file as dados
+                self.vida -= (inimigo.dano+((inimigo.dano+inimigo.level)/2))
+            elif inimigo.level >= self.level:
+                import Dados_file as dados
+                self.vida -= inimigo.dano+((inimigo.dano*(inimigo.level/2)) + dados.D6.resultado)
+            if self.estamina <= ataque.estamina:
+                print(f"Voce nao possui estamina para o ataque: {ataque.nome}")
+            print(f"A vida restante do seu inimigo e: {inimigo.vida}")
+            print(f"Sua vida e: {player.vida}\n sua estamina restante e de: {self.estamina}")
+            if inimigo.vida <= 0:
+                print("Voce matou seu inimigo!")
+                print("Voce recebeu uma cura de 10% do seu hp")
+                self.vida += (self.vida*0.10)
+            elif self.vida <= 0:
+                print("Game Over!")
+                exit()
