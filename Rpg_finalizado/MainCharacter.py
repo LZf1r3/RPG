@@ -33,6 +33,14 @@ class Main_character_class():
         self.estamina = estamina #Estamida definida de acordo com a classe escolhida
         self.barulho = barulho #Barulho definido de acordo com a calsse escolhida
 
+    @property
+    def escolhendo_ataque(self):
+        print(f"Voce pode escolher 3 ataques da classe escolhida ({self.classe})")
+        for classe in num_classes:
+            if classe.name == self.classe:
+                for ataque in classe.ataques:
+                    print(ataque.nome)
+                    
     #Funcao de atacar inimigos
     def atacar(self,weapon,inimigo): #Recebe variavel de armas(espadas, arcos, etc...) e variavel de inimigo
         print(f"Voce encontrou um '{inimigo.nome}' level:{inimigo.level}") #Imprimindo informacao do inimigo
@@ -167,9 +175,12 @@ class ataques_espadas(ataques):#Definindo que a classe ataques_espadas e filha d
         super().__init__(nome, dano, estamina, mana)#Pegando as informacoes de derivacao da classe mae(ataques)
 
 #Definindo classe para os ataques das classes
-class ataques_de_classe(ataques):#Definido que a classe ataques_de_classe e filha da classe ataques
+class ataques_de_classe:
     def __init__(self, nome, dano, estamina, mana):
-        super().__init__(nome, dano, estamina, mana)#Pegando as informacoes de derivacao da classe mae(ataques)
+        self.nome = nome
+        self.dano = dano
+        self.estamina = estamina
+        self.mana = mana
 
 #Definindo ataques de espada
 ataque_rapido_espada = ataques_espadas("Ataque Rapido",10,10,0)
@@ -178,27 +189,27 @@ danca_das_laminas_espada = ataques_espadas("Dança das Lâminas", 15, 15,0)
 
 #Definindo ataques de classe
 #Mago:
-Bola_de_fogo = ataques_de_classe("Bola de Fogo", 35, 5, 15),
-Raio_glacial = ataques_de_classe("Raio Glacial", 30, 4, 20),
-Explosao_arcana = ataques_de_classe("Explosão Arcana", 45, 7, 25),
-Escudo_de_energia = ataques_de_classe("Escudo de Energia", 0, 10, 20),
-Metamorfose_elemental = ataques_de_classe("Metamorfose Elemental", 55, 8, 30),
-Tornado_Etereo = ataques_de_classe("Tornado Etéreo", 40, 6, 20),
-Esfera_Sombria = ataques_de_classe("Esfera Sombria", 38, 5, 20),
-Vortice_do_Caos = ataques_de_classe("Vórtice do Caos", 50, 8, 25),
-Maldicao_Profana = ataques_de_classe("Maldição Profana", 30, 4, 15),
-Invocacao_Arcana = ataques_de_classe("Invocação Arcana", 42, 6, 20)
+bola_de_fogo = ataques_de_classe("Bola de Fogo", 35, 5, 15),
+raio_glacial = ataques_de_classe("Raio Glacial", 30, 4, 20),
+explosao_arcana = ataques_de_classe("Explosão Arcana", 45, 7, 25),
+escudo_de_energia = ataques_de_classe("Escudo de Energia", 0, 10, 20),
+metamorfose_elemental = ataques_de_classe("Metamorfose Elemental", 55, 8, 30),
+tornado_etereo = ataques_de_classe("Tornado Etéreo", 40, 6, 20),
+esfera_sombria = ataques_de_classe("Esfera Sombria", 38, 5, 20),
+vortice_do_caos = ataques_de_classe("Vórtice do Caos", 50, 8, 25),
+maldicao_profana = ataques_de_classe("Maldição Profana", 30, 4, 15),
+invocacao_arcana = ataques_de_classe("Invocação Arcana", 42, 6, 20)
 #Elfo:
-Disparo_de_Precisao = ataques_de_classe("Disparo de Precisão", 30, 5, 15),
-Flecha_Flamejante = ataques_de_classe("Flecha Flamejante", 25, 4, 20),
-Tiro_Multiplo = ataques_de_classe("Tiro Múltiplo", 20, 6, 10),
-Salto_Acrobatico = ataques_de_classe("Salto Acrobático", 0, 8, 10),
-Seta_Envenenada = ataques_de_classe("Seta Envenenada", 28, 5, 15),
-Flecha_de_Gelo = ataques_de_classe("Flecha de Gelo", 32, 6, 15),
-Chuva_de_Flechas = ataques_de_classe("Chuva de Flechas", 15, 10, 25),
-Flecha_Perfurante = ataques_de_classe("Flecha Perfurante", 35, 7, 18),
-Sopro_da_Natureza = ataques_de_classe("Sopro da Natureza", 40, 7, 20),
-Evasao_Elfica = ataques_de_classe("Evasão Élfica", 0, 12, 15)
+disparo_de_precisao = ataques_de_classe("Disparo de Precisão", 30, 5, 15),
+flecha_flamejante = ataques_de_classe("Flecha Flamejante", 25, 4, 20),
+tiro_multiplo = ataques_de_classe("Tiro Múltiplo", 20, 6, 10),
+salto_acrobatico = ataques_de_classe("Salto Acrobático", 0, 8, 10),
+seta_envenenada = ataques_de_classe("Seta Envenenada", 28, 5, 15),
+flecha_de_gelo = ataques_de_classe("Flecha de Gelo", 32, 6, 15),
+chuva_de_flechas = ataques_de_classe("Chuva de Flechas", 15, 10, 25),
+flecha_perfurante = ataques_de_classe("Flecha Perfurante", 35, 7, 18),
+sopro_da_natureza = ataques_de_classe("Sopro da Natureza", 40, 7, 20),
+evasao_elfica = ataques_de_classe("Evasão Élfica", 0, 12, 15)
 #feral
 Investida_Brutal = ataques_de_classe("Investida Brutal", 40, 12, 0),
 Garras_Sombrias = ataques_de_classe("Garras Sombrias", 35, 8, 0),
@@ -213,6 +224,11 @@ Forma_Bestial = ataques_de_classe("Forma Bestial", 0, 20, 0)
 #Draconico
 ##Add info about the class draconic
 
+#Criando listas com os ataques de cada classe
+ataques_mago = []
+ataques_elfo = [disparo_de_precisao,flecha_flamejante,tiro_multiplo,salto_acrobatico,seta_envenenada,flecha_de_gelo,chuva_de_flechas,flecha_perfurante,sopro_da_natureza,evasao_elfica]
+ataques_feral = [Investida_Brutal,Garras_Sombrias,Furia_Desenfreada,Roar_Aterronizante,Corte_Giratorio,Berserker,Salto_Predatorio,Mordida_Voraz,Finta_Mortal,Forma_Bestial]
+
 #Criando variaveis de leitura do arquivo txt das classes onde tem a informacao necessaria delas
 drac_file = open("RPG/Classes_folder/Classes_info_folder/Draconico.txt","r") #Variavel das informacoes detalhadas da classe draconico
 elfo_file = open("RPG/Classes_folder/Classes_info_folder/Elfo.txt","r") #Variavel das informacoes detalhadas da classe elfo
@@ -221,9 +237,9 @@ mago_file = open("RPG/Classes_folder/Classes_info_folder/Mago.txt","r") #Variave
 
 #Definindo as classes
 draconico = Classes("Draconico", 7, 125, 25, 10,drac_file.read(),[]) #Definindo classe Draconico
-elfo = Classes("Elfo", 4.5, 80, 75, 2, elfo_file.read(),[]) #Definindo classe elfo
-feral = Classes("Feral", 8.5, 145, 0, 10, fera_file.read(),[]) #Definindo classe feral
-mago = Classes("Mago", 5, 100, 100, 4, mago_file.read(),[]) #Definindo classe mago
+elfo = Classes("Elfo", 4.5, 80, 75, 2, elfo_file.read(),[disparo_de_precisao,flecha_flamejante,tiro_multiplo,salto_acrobatico,seta_envenenada,flecha_de_gelo,chuva_de_flechas,flecha_perfurante,sopro_da_natureza,evasao_elfica]) #Definindo classe elfo
+feral = Classes("Feral", 8.5, 145, 0, 10, fera_file.read(),[ataques_feral]) #Definindo classe feral
+mago = Classes("Mago", 5, 100, 100, 4, mago_file.read(),[ataques_mago]) #Definindo classe mago
 
 #Criando lista das classes que e mto importante 
 num_classes = [draconico,elfo,feral,mago]#Lista das classes
@@ -259,7 +275,7 @@ def help():
                 print("Classe nao encontrada! Tente novamente.") #imprimindo que o a classe dada pelo player nao e jogavel
                 help() #Executando a funcao help denovo
 
-qual_classe = str(input("Digite o nome da classe ou digite 'help' para saber as informacoes sobre uma determinada classe.\n")).strip().title()
+qual_classe = str(input("Digite o nome da classe ou digite 'help' para saber as informacoes sobre uma determinada classe.\n.:")).strip().title()
 if qual_classe == "@Adm":
     print("Entrando em modo adm...")
 else:
@@ -287,5 +303,5 @@ def writing_classes():
                      with open("RPG/Classes_folder/Playable_classes.txt","a") as file_w:
                           file_w.write(f"{classe.name}\n")
 
-#    sword = espadas("Sword",10, 5, 0,[ataque_rapido_espada, golpe_flamejante_espada])
-#    player.atacar(sword, lvl_3)
+
+player.escolhendo_ataque
