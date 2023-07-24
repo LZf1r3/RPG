@@ -32,15 +32,25 @@ class Main_character_class():
         self.level = 1 #Melhorar funcao de ganhar nivel
         self.estamina = estamina #Estamida definida de acordo com a classe escolhida
         self.barulho = barulho #Barulho definido de acordo com a calsse escolhida
+        self.ataques = []
 
     @property
     def escolhendo_ataque(self):
-        print(f"Voce pode escolher 3 ataques da classe escolhida ({self.classe})")
-        for classe in num_classes:
-            if classe.name == self.classe:
-                for ataque in classe.ataques:
-                    print(ataque.nome)
+        for numero, ataque in enumerate(classe.ataques, start=1):
+            print(f"{numero}. {ataque.nome}")
+        ataque_escolhido = None
+        while ataque_escolhido == None:
+            try:
+                ataque_escolhido = int(input("Digite o numero do ataque: "))
+                if ataque_escolhido not in range(1, len(self.classe.ataques+1)):
+                    print("Numero de ataque invalido! Tente novamente.")
+                    ataque_escolhido = None
+                elif 
+            except ValueError:
+                print("Ataque nao encontrado! Tente novamente.")
+                ataque_escolhido = None
                     
+
     #Funcao de atacar inimigos
     def atacar(self,weapon,inimigo): #Recebe variavel de armas(espadas, arcos, etc...) e variavel de inimigo
         print(f"Voce encontrou um '{inimigo.nome}' level:{inimigo.level}") #Imprimindo informacao do inimigo
@@ -187,47 +197,48 @@ ataque_rapido_espada = ataques_espadas("Ataque Rapido",10,10,0)
 golpe_flamejante_espada = ataques_espadas("Golpe Flamejante", 25, 50,0)
 danca_das_laminas_espada = ataques_espadas("Dança das Lâminas", 15, 15,0)
 
-#Definindo ataques de classe
-#Mago:
-bola_de_fogo = ataques_de_classe("Bola de Fogo", 35, 5, 15),
-raio_glacial = ataques_de_classe("Raio Glacial", 30, 4, 20),
-explosao_arcana = ataques_de_classe("Explosão Arcana", 45, 7, 25),
-escudo_de_energia = ataques_de_classe("Escudo de Energia", 0, 10, 20),
-metamorfose_elemental = ataques_de_classe("Metamorfose Elemental", 55, 8, 30),
-tornado_etereo = ataques_de_classe("Tornado Etéreo", 40, 6, 20),
-esfera_sombria = ataques_de_classe("Esfera Sombria", 38, 5, 20),
-vortice_do_caos = ataques_de_classe("Vórtice do Caos", 50, 8, 25),
-maldicao_profana = ataques_de_classe("Maldição Profana", 30, 4, 15),
+# Definindo ataques de classe
+# Mago:
+bola_de_fogo = ataques_de_classe("Bola de Fogo", 35, 5, 15)
+raio_glacial = ataques_de_classe("Raio Glacial", 30, 4, 20)
+explosao_arcana = ataques_de_classe("Explosão Arcana", 45, 7, 25)
+escudo_de_energia = ataques_de_classe("Escudo de Energia", 0, 10, 20)
+metamorfose_elemental = ataques_de_classe("Metamorfose Elemental", 55, 8, 30)
+tornado_etereo = ataques_de_classe("Tornado Etéreo", 40, 6, 20)
+esfera_sombria = ataques_de_classe("Esfera Sombria", 38, 5, 20)
+vortice_do_caos = ataques_de_classe("Vórtice do Caos", 50, 8, 25)
+maldicao_profana = ataques_de_classe("Maldição Profana", 30, 4, 15)
 invocacao_arcana = ataques_de_classe("Invocação Arcana", 42, 6, 20)
-#Elfo:
-disparo_de_precisao = ataques_de_classe("Disparo de Precisão", 30, 5, 15),
-flecha_flamejante = ataques_de_classe("Flecha Flamejante", 25, 4, 20),
-tiro_multiplo = ataques_de_classe("Tiro Múltiplo", 20, 6, 10),
-salto_acrobatico = ataques_de_classe("Salto Acrobático", 0, 8, 10),
-seta_envenenada = ataques_de_classe("Seta Envenenada", 28, 5, 15),
-flecha_de_gelo = ataques_de_classe("Flecha de Gelo", 32, 6, 15),
-chuva_de_flechas = ataques_de_classe("Chuva de Flechas", 15, 10, 25),
-flecha_perfurante = ataques_de_classe("Flecha Perfurante", 35, 7, 18),
-sopro_da_natureza = ataques_de_classe("Sopro da Natureza", 40, 7, 20),
+# Elfo:
+disparo_de_precisao = ataques_de_classe("Disparo de Precisão", 30, 5, 15)
+flecha_flamejante = ataques_de_classe("Flecha Flamejante", 25, 4, 20)
+tiro_multiplo = ataques_de_classe("Tiro Múltiplo", 20, 6, 10)
+salto_acrobatico = ataques_de_classe("Salto Acrobático", 0, 8, 10)
+seta_envenenada = ataques_de_classe("Seta Envenenada", 28, 5, 15)
+flecha_de_gelo = ataques_de_classe("Flecha de Gelo", 32, 6, 15)
+chuva_de_flechas = ataques_de_classe("Chuva de Flechas", 15, 10, 25)
+flecha_perfurante = ataques_de_classe("Flecha Perfurante", 35, 7, 18)
+sopro_da_natureza = ataques_de_classe("Sopro da Natureza", 40, 7, 20)
 evasao_elfica = ataques_de_classe("Evasão Élfica", 0, 12, 15)
-#feral
-Investida_Brutal = ataques_de_classe("Investida Brutal", 40, 12, 0),
-Garras_Sombrias = ataques_de_classe("Garras Sombrias", 35, 8, 0),
-Furia_Desenfreada = ataques_de_classe("Fúria Desenfreada", 50, 15, 0),
-Roar_Aterronizante = ataques_de_classe("Roar Aterrorizante", 0, 10, 0),
-Corte_Giratorio = ataques_de_classe("Corte Giratório", 38, 10, 0),
-Berserker = ataques_de_classe("Berserker", 45, 14, 0),
-Salto_Predatorio = ataques_de_classe("Salto Predatório", 30, 8, 0),
-Mordida_Voraz = ataques_de_classe("Mordida Voraz", 32, 9, 0),
-Finta_Mortal = ataques_de_classe("Finta Mortal", 42, 11, 0),
+# Feral
+Investida_Brutal = ataques_de_classe("Investida Brutal", 40, 12, 0)
+Garras_Sombrias = ataques_de_classe("Garras Sombrias", 35, 8, 0)
+Furia_Desenfreada = ataques_de_classe("Fúria Desenfreada", 50, 15, 0)
+Roar_Aterronizante = ataques_de_classe("Roar Aterrorizante", 0, 10, 0)
+Corte_Giratorio = ataques_de_classe("Corte Giratório", 38, 10, 0)
+Berserker = ataques_de_classe("Berserker", 45, 14, 0)
+Salto_Predatorio = ataques_de_classe("Salto Predatório", 30, 8, 0)
+Mordida_Voraz = ataques_de_classe("Mordida Voraz", 32, 9, 0)
+Finta_Mortal = ataques_de_classe("Finta Mortal", 42, 11, 0)
 Forma_Bestial = ataques_de_classe("Forma Bestial", 0, 20, 0)
-#Draconico
+# Draconico
 ##Add info about the class draconic
 
-#Criando listas com os ataques de cada classe
+# Criando listas com os ataques de cada classe
 ataques_mago = []
-ataques_elfo = [disparo_de_precisao,flecha_flamejante,tiro_multiplo,salto_acrobatico,seta_envenenada,flecha_de_gelo,chuva_de_flechas,flecha_perfurante,sopro_da_natureza,evasao_elfica]
-ataques_feral = [Investida_Brutal,Garras_Sombrias,Furia_Desenfreada,Roar_Aterronizante,Corte_Giratorio,Berserker,Salto_Predatorio,Mordida_Voraz,Finta_Mortal,Forma_Bestial]
+ataques_elfo = [disparo_de_precisao, flecha_flamejante, tiro_multiplo, salto_acrobatico, seta_envenenada, flecha_de_gelo, chuva_de_flechas, flecha_perfurante, sopro_da_natureza, evasao_elfica]
+ataques_feral = [Investida_Brutal, Garras_Sombrias, Furia_Desenfreada, Roar_Aterronizante, Corte_Giratorio, Berserker, Salto_Predatorio, Mordida_Voraz, Finta_Mortal, Forma_Bestial]
+
 
 #Criando variaveis de leitura do arquivo txt das classes onde tem a informacao necessaria delas
 drac_file = open("RPG/Classes_folder/Classes_info_folder/Draconico.txt","r") #Variavel das informacoes detalhadas da classe draconico
@@ -290,8 +301,8 @@ else:
                 if f"{qual_classe}\n" == line:
                     for classe in num_classes:
                         if qual_classe == classe.name:
-                            player = Main_character_class(qual_classe,classe.life,classe.base_damage,classe.mana,0,2,3,100,classe.noise)
-                            print(f"\nPlayer:{player.nome}\nClasse:{player.classe}\nVida:{player.vida}\nEstamina:{player.estamina}\nDano:{player.dano}\nMana:{player.mana}\nSaturacao:{player.saturacao}\nArmadura-mana:{player.armadura_mana}\nArmadura-defesa:{player.armadura}\n\n")
+                            player = Main_character_class(classe,classe.life,classe.base_damage,classe.mana,0,2,3,100,classe.noise)
+                            print(f"\nPlayer:{player.nome}\nClasse:{player.classe.name}\nVida:{player.vida}\nEstamina:{player.estamina}\nDano:{player.dano}\nMana:{player.mana}\nSaturacao:{player.saturacao}\nArmadura-mana:{player.armadura_mana}\nArmadura-defesa:{player.armadura}\n\n")
 
 #Funcao de escrever classes em um txt
 def writing_classes():
@@ -302,6 +313,5 @@ def writing_classes():
                 else:
                      with open("RPG/Classes_folder/Playable_classes.txt","a") as file_w:
                           file_w.write(f"{classe.name}\n")
-
 
 player.escolhendo_ataque
