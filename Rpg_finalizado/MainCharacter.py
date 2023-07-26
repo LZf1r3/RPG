@@ -39,7 +39,8 @@ class Main_character_class():
         for numero, ataque in enumerate(self.classe.ataques, start=1):
             print(f"{numero}. {ataque.nome}")
         ataque_escolhido = None
-        while ataque_escolhido != 4:
+        loop = 0
+        while loop != 3:
             try:
                 ataque_escolhido = int(input("Digite o numero do ataque: "))
                 if self.classe.ataques[ataque_escolhido-1] in self.ataques:
@@ -47,10 +48,11 @@ class Main_character_class():
                     ataque_escolhido = None
                 if ataque_escolhido not in range(1, len(self.classe.ataques)+1):
                     print("Numero de ataque invalido! Tente novamente.")
-                    ataque_escolhido = None
+                    ataque_escolhido = 0
                 else:
                     self.ataques.append(self.classe.ataques[ataque_escolhido-1])
-                    ataque_escolhido +=1 
+                    loop += 1
+                    ataque_escolhido = None
             except ValueError:
                 print("Ataque nao encontrado! Tente novamente.")
                 ataque_escolhido = None
@@ -59,13 +61,15 @@ class Main_character_class():
 
     #Funcao de atacar inimigos
     def atacar(self,weapon,inimigo): #Recebe variavel de armas(espadas, arcos, etc...) e variavel de inimigo
+        for ataque in weapon.ataques:
+            self.ataques.append(ataque)
         print(f"Voce encontrou um '{inimigo.nome}' level:{inimigo.level}") #Imprimindo informacao do inimigo
         while self.vida >=0 and inimigo.vida >=0: #Criando loop de batalha
             print("Qual ataque voce gostaria de fazer?")
-            for ataque in weapon.ataques:#Loop imprimindo os ataques da arma (!!!Preciso adicionar os ataques da classe tbm!!!)
+            for ataque in self.ataques:#Loop imprimindo os ataques da arma (!!!Preciso adicionar os ataques da classe tbm!!!)
                 print(f"\n{ataque.nome}\nDano:{ataque.dano} Estamina:{ataque.estamina} Mana:{ataque.mana}")#Imprimindo informacoes do ataque
             qual_ataque = str(input(".:"))#Escolhendo ataque
-            for ataque in weapon.ataques: #Loop para verificacao de ataque na lista de ataques da arma selecionada
+            for ataque in self.ataques: #Loop para verificacao de ataque na lista de ataques da arma selecionada
                 if qual_ataque == ataque.nome: #Verificando se o nome dado pelo player bate com o nome dado pela variavel de ataque
                     print(f"Ataque selecionado: {qual_ataque}") #Imprimi o ataque selecionado 
                     if self.estamina < ataque.estamina: #Verificando se o personagem possui estamina 
@@ -100,7 +104,8 @@ class Main_character_class():
                             elif inimigo.level >= self.level + 5:
                                 bad_dados = Dados_file.D4
                             else:
-                                dados = Dados_file.D0
+                                bad_dados = Dados_file.D0
+                            dados = Dados_file.D0
                             print(f"Voce possui a desvantagem de um {dados.name}\n")
                         elif self.level == inimigo.level:
                             import Dados_file
@@ -199,6 +204,31 @@ class ataques_de_classe:
         self.mana = mana
 
 #Definindo ataques de espada
+estocada_rapida_espada = ataques_espadas("Estocada Rápida", 12, 8, 0)
+corte_vertical_espada = ataques_espadas("Corte Vertical", 18, 12, 0)
+golpe_frenetico_espada = ataques_espadas("Golpe Frenético", 20, 15, 0)
+investida_poderosa_espada = ataques_espadas("Investida Poderosa", 30, 25, 0)
+golpe_giratorio_espada = ataques_espadas("Golpe Giratório", 15, 20, 0)
+furacao_cortante_espada = ataques_espadas("Furacão Cortante", 22, 18, 0)
+estocada_precisa_espada = ataques_espadas("Estocada Precisa", 14, 10, 0)
+corte_horizontal_amplo_espada = ataques_espadas("Corte Horizontal Amplo", 20, 16, 0)
+golpe_mortal_espada = ataques_espadas("Golpe Mortal", 35, 30, 0)
+corte_rapido_espada = ataques_espadas("Corte Rápido", 16, 12, 0)
+golpe_fulminante_espada = ataques_espadas("Golpe Fulminante", 40, 35, 0)
+investida_impetuosa_espada = ataques_espadas("Investida Impetuosa", 25, 20, 0)
+corte_diagonal_espada = ataques_espadas("Corte Diagonal", 18, 15, 0)
+estocada_poderosa_espada = ataques_espadas("Estocada Poderosa", 30, 28, 0)
+golpe_rapido_espada = ataques_espadas("Golpe Rápido", 14, 12, 0)
+corte_investida_espada = ataques_espadas("Corte de Investida", 20, 16, 0)
+golpe_furioso_espada = ataques_espadas("Golpe Furioso", 26, 22, 0)
+contra_golpe_espada = ataques_espadas("Contra Golpe", 20, 18, 0)
+golpe_trovao_espada = ataques_espadas("Golpe Trovão", 35, 30, 0)
+estocada_rapida_espada = ataques_espadas("Estocada Rápida", 15, 10, 0)
+corte_chamas_espada = ataques_espadas("Corte das Chamas", 28, 22, 0)
+golpe_concentrado_espada = ataques_espadas("Golpe Concentrado", 32, 28, 0)
+danca_cortante_espada = ataques_espadas("Dança Cortante", 22, 20, 0)
+golpe_preciso_espada = ataques_espadas("Golpe Preciso", 20, 18, 0)
+investida_frenetica_espada = ataques_espadas("Investida Frenética", 28, 24, 0)
 ataque_rapido_espada = ataques_espadas("Ataque Rapido",10,10,0)
 golpe_flamejante_espada = ataques_espadas("Golpe Flamejante", 25, 50,0)
 danca_das_laminas_espada = ataques_espadas("Dança das Lâminas", 15, 15,0)
@@ -247,10 +277,10 @@ ataques_feral = [Investida_Brutal, Garras_Sombrias, Furia_Desenfreada, Roar_Ater
 
 
 #Criando variaveis de leitura do arquivo txt das classes onde tem a informacao necessaria delas
-drac_file = open("RPG/Classes_folder/Classes_info_folder/Draconico.txt","r") #Variavel das informacoes detalhadas da classe draconico
-elfo_file = open("RPG/Classes_folder/Classes_info_folder/Elfo.txt","r") #Variavel das informacoes detalhadas da classe elfo
-fera_file = open("RPG/Classes_folder/Classes_info_folder/Feral.txt","r") #Variavel das informacoes detalhadas da classe feral
-mago_file = open("RPG/Classes_folder/Classes_info_folder/Mago.txt","r") #Variavel das informacoes detalhadas da classe mago
+drac_file = open("RPG_finalizado/Classes_info_folder/Draconico.txt","r") #Variavel das informacoes detalhadas da classe draconico
+elfo_file = open("RPG_finalizado/Classes_info_folder/Elfo.txt","r") #Variavel das informacoes detalhadas da classe elfo
+fera_file = open("RPG_finalizado/Classes_info_folder/Feral.txt","r") #Variavel das informacoes detalhadas da classe feral
+mago_file = open("RPG_finalizado/Classes_info_folder/Mago.txt","r") #Variavel das informacoes detalhadas da classe mago
 
 #Definindo as classes
 draconico = Classes("Draconico", 7, 125, 25, 10,drac_file.read(),[]) #Definindo classe Draconico
@@ -322,11 +352,13 @@ while setado != 0:
 #Funcao de escrever classes em um txt
 def writing_classes():
         for classe in num_classes:
-            with open("RPG/Classes_folder/Playable_classes.txt","r") as file_r:
+            with open("RPG_finalizado/Playable_classes.txt","r") as file_r:
                 if f"{classe.name}\n" in file_r.readlines():
                     print(f"A classe {classe.name} ja esta salva!")
                 else:
-                     with open("RPG/Classes_folder/Playable_classes.txt","a") as file_w:
+                     with open("RPG_finalizado/Playable_classes.txt","a") as file_w:
                           file_w.write(f"{classe.name}\n")
 
+ouro = espadas("Espada de ouro", 1, 1, 1, [golpe_flamejante_espada, ataque_rapido_espada])
 player.escolhendo_ataque
+player.atacar(ouro,lvl_2)
