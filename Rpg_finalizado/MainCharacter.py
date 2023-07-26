@@ -45,7 +45,9 @@ class Main_character_class():
                 if ataque_escolhido not in range(1, len(self.classe.ataques+1)):
                     print("Numero de ataque invalido! Tente novamente.")
                     ataque_escolhido = None
-                elif 
+                else:
+                    for ataque in self.classe.ataques:
+                        print(ataque.nome)
             except ValueError:
                 print("Ataque nao encontrado! Tente novamente.")
                 ataque_escolhido = None
