@@ -36,22 +36,26 @@ class Main_character_class():
 
     @property
     def escolhendo_ataque(self):
-        for numero, ataque in enumerate(classe.ataques, start=1):
+        for numero, ataque in enumerate(self.classe.ataques, start=1):
             print(f"{numero}. {ataque.nome}")
         ataque_escolhido = None
-        while ataque_escolhido == None:
+        while ataque_escolhido != 4:
             try:
                 ataque_escolhido = int(input("Digite o numero do ataque: "))
-                if ataque_escolhido not in range(1, len(self.classe.ataques+1)):
+                if self.classe.ataques[ataque_escolhido-1] in self.ataques:
+                    print('Voce ja selecionou este ataque. Tente selecionar outro')
+                    ataque_escolhido = None
+                if ataque_escolhido not in range(1, len(self.classe.ataques)+1):
                     print("Numero de ataque invalido! Tente novamente.")
                     ataque_escolhido = None
                 else:
-                    for ataque in self.classe.ataques:
-                        print(ataque.nome)
+                    self.ataques.append(self.classe.ataques[ataque_escolhido-1])
+                    ataque_escolhido +=1 
             except ValueError:
                 print("Ataque nao encontrado! Tente novamente.")
                 ataque_escolhido = None
-                    
+        for numero, ataque in enumerate(self.ataques, start=1):
+            print(f"{numero}. {ataque.nome}")
 
     #Funcao de atacar inimigos
     def atacar(self,weapon,inimigo): #Recebe variavel de armas(espadas, arcos, etc...) e variavel de inimigo
@@ -237,7 +241,7 @@ Forma_Bestial = ataques_de_classe("Forma Bestial", 0, 20, 0)
 ##Add info about the class draconic
 
 # Criando listas com os ataques de cada classe
-ataques_mago = []
+ataques_mago = [bola_de_fogo, raio_glacial, explosao_arcana, escudo_de_energia, metamorfose_elemental, tornado_etereo, esfera_sombria, vortice_do_caos, maldicao_profana, invocacao_arcana]
 ataques_elfo = [disparo_de_precisao, flecha_flamejante, tiro_multiplo, salto_acrobatico, seta_envenenada, flecha_de_gelo, chuva_de_flechas, flecha_perfurante, sopro_da_natureza, evasao_elfica]
 ataques_feral = [Investida_Brutal, Garras_Sombrias, Furia_Desenfreada, Roar_Aterronizante, Corte_Giratorio, Berserker, Salto_Predatorio, Mordida_Voraz, Finta_Mortal, Forma_Bestial]
 
@@ -251,8 +255,8 @@ mago_file = open("RPG/Classes_folder/Classes_info_folder/Mago.txt","r") #Variave
 #Definindo as classes
 draconico = Classes("Draconico", 7, 125, 25, 10,drac_file.read(),[]) #Definindo classe Draconico
 elfo = Classes("Elfo", 4.5, 80, 75, 2, elfo_file.read(),[disparo_de_precisao,flecha_flamejante,tiro_multiplo,salto_acrobatico,seta_envenenada,flecha_de_gelo,chuva_de_flechas,flecha_perfurante,sopro_da_natureza,evasao_elfica]) #Definindo classe elfo
-feral = Classes("Feral", 8.5, 145, 0, 10, fera_file.read(),[ataques_feral]) #Definindo classe feral
-mago = Classes("Mago", 5, 100, 100, 4, mago_file.read(),[ataques_mago]) #Definindo classe mago
+feral = Classes("Feral", 8.5, 145, 0, 10, fera_file.read(),[Investida_Brutal, Garras_Sombrias, Furia_Desenfreada, Roar_Aterronizante, Corte_Giratorio, Berserker, Salto_Predatorio, Mordida_Voraz, Finta_Mortal, Forma_Bestial]) #Definindo classe feral
+mago = Classes("Mago", 5, 100, 100, 4, mago_file.read(),[bola_de_fogo, raio_glacial, explosao_arcana, escudo_de_energia, metamorfose_elemental, tornado_etereo, esfera_sombria, vortice_do_caos, maldicao_profana, invocacao_arcana]) #Definindo classe mago
 
 #Criando lista das classes que e mto importante 
 num_classes = [draconico,elfo,feral,mago]#Lista das classes
@@ -288,24 +292,33 @@ def help():
                 print("Classe nao encontrada! Tente novamente.") #imprimindo que o a classe dada pelo player nao e jogavel
                 help() #Executando a funcao help denovo
 
-qual_classe = str(input("Digite o nome da classe ou digite 'help' para saber as informacoes sobre uma determinada classe.\n.:")).strip().title()
-if qual_classe == "@Adm":
-    print("Entrando em modo adm...")
-else:
-    with open("Rpg_finalizado/Playable_classes.txt","r") as file:
-        if qual_classe == "Help":
-            help()
-            qual_classe = str(input("Digite o nome da classe que deseja jogar como.\n.:")).strip().title()
-        elif f"{qual_classe}\n" not in file.readlines():
-            print(f"A classe {qual_classe} nao e reconhecida como uma classe jogavel!")
-    with open("Rpg_finalizado/Playable_classes.txt","r") as file:
-        for line in file.readlines():
-                if f"{qual_classe}\n" == line:
-                    for classe in num_classes:
-                        if qual_classe == classe.name:
-                            player = Main_character_class(classe,classe.life,classe.base_damage,classe.mana,0,2,3,100,classe.noise)
-                            print(f"\nPlayer:{player.nome}\nClasse:{player.classe.name}\nVida:{player.vida}\nEstamina:{player.estamina}\nDano:{player.dano}\nMana:{player.mana}\nSaturacao:{player.saturacao}\nArmadura-mana:{player.armadura_mana}\nArmadura-defesa:{player.armadura}\n\n")
 
+setado = None
+while setado != 0:
+    try:
+        qual_classe = str(input("Digite o nome da classe ou digite 'help' para saber as informacoes sobre uma determinada classe.\n.:")).strip().title()
+        if qual_classe == "@Adm":
+            print("Entrando em modo adm...")
+            break
+        with open("Rpg_finalizado/Playable_classes.txt","r") as file:
+            if qual_classe == "Help":
+                help()
+                qual_classe = str(input("Digite o nome da classe que deseja jogar como.\n.:")).strip().title()
+                setado = None
+            elif f"{qual_classe}\n" not in file.readlines():
+                print(f"A classe {qual_classe} nao e reconhecida como uma classe jogavel! Tente novamente.")
+                setado = None
+            else:
+                with open("Rpg_finalizado/Playable_classes.txt","r") as file:
+                    for line in file.readlines():
+                            if f"{qual_classe}\n" == line:
+                                for classe in num_classes:
+                                    if qual_classe == classe.name:
+                                        player = Main_character_class(classe,classe.life,classe.base_damage,classe.mana,0,2,3,100,classe.noise)
+                                        print(f"\nPlayer:{player.nome}\nClasse:{player.classe.name}\nVida:{player.vida}\nEstamina:{player.estamina}\nDano:{player.dano}\nMana:{player.mana}\nSaturacao:{player.saturacao}\nArmadura-mana:{player.armadura_mana}\nArmadura-defesa:{player.armadura}\n\n")
+                                        setado=0
+    except ValueError:
+        print("Tente novamente.")
 #Funcao de escrever classes em um txt
 def writing_classes():
         for classe in num_classes:
