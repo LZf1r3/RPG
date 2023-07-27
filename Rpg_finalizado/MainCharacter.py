@@ -307,8 +307,10 @@ lvl_10 = inimigos("Gordon the Goblin GOD", 500, 50, 10, 10)
 #Funcao de ajuda que sera utilizada no comeco do codigo
 def help():
     for classe in num_classes: #(Loop and Print) -> para informar as informacoes basicas de cada classe presente na lista de classes
-        print(f"\nInformacoes da classe {classe.name}\nNome:{classe.name}\nVida:{classe.life}\nMana:{classe.mana}\nDano-Base:{classe.base_damage}\nAtaques:{classe.ataques}\nBarulho:{classe.noise}\n")
-
+        print(f"\nInformacoes da classe {classe.name}\nNome:{classe.name}\nVida:{classe.life}\nMana:{classe.mana}\nDano-Base:{classe.base_damage}\nBarulho:{classe.noise}\nAtaques:")
+        for numero, ataque in enumerate(classe.ataques, start=1):
+            print(f"    {numero}. {ataque.nome}")
+        print("---------------------------//---------------------------")
     qual_classe = str(input("Digite 'continue' caso deseije selecionar alguma classe ou digite o nome da classe para descobrir mais sobre ela: ")).title().strip()#Perguntando para o player qual a classe ele quer informacoes detalhadas ou se ele nao precisa mais delas
     #IF statement que define se o usuario vai seguir para escolher a classe ou se ele que saber a informacao de alguma classe
     if qual_classe == "Continue":
@@ -333,7 +335,6 @@ while setado != 0:
         with open("Rpg_finalizado/Playable_classes.txt","r") as file:
             if qual_classe == "Help":
                 help()
-                qual_classe = str(input("Digite o nome da classe que deseja jogar como.\n.:")).strip().title()
                 setado = None
             elif f"{qual_classe}\n" not in file.readlines():
                 print(f"A classe {qual_classe} nao e reconhecida como uma classe jogavel! Tente novamente.")
