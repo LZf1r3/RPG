@@ -1,0 +1,11 @@
+Armadura de mago novato
+Armadura de cavalheiro caseira
+Armadura de feral iniciante
+God armor
+Batata podre
+Veneno I
+Veneno II
+Veneno III
+Dano-Instantanio I
+Dano-Instantanio II
+Dano-Instantanio III
