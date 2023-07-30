@@ -277,10 +277,10 @@ ataques_feral = [Investida_Brutal, Garras_Sombrias, Furia_Desenfreada, Roar_Ater
 
 
 #Criando variaveis de leitura do arquivo txt das classes onde tem a informacao necessaria delas
-drac_file = open("RPG_finalizado/Classes_info_folder/Draconico.txt","r") #Variavel das informacoes detalhadas da classe draconico
-elfo_file = open("RPG_finalizado/Classes_info_folder/Elfo.txt","r") #Variavel das informacoes detalhadas da classe elfo
-fera_file = open("RPG_finalizado/Classes_info_folder/Feral.txt","r") #Variavel das informacoes detalhadas da classe feral
-mago_file = open("RPG_finalizado/Classes_info_folder/Mago.txt","r") #Variavel das informacoes detalhadas da classe mago
+drac_file = open("RPG/Classes_info_folder/Draconico.txt","r") #Variavel das informacoes detalhadas da classe draconico
+elfo_file = open("RPG/Classes_info_folder/Elfo.txt","r") #Variavel das informacoes detalhadas da classe elfo
+fera_file = open("RPG/Classes_info_folder/Feral.txt","r") #Variavel das informacoes detalhadas da classe feral
+mago_file = open("RPG/Classes_info_folder/Mago.txt","r") #Variavel das informacoes detalhadas da classe mago
 
 #Definindo as classes
 draconico = Classes("Draconico", 7, 125, 25, 10,drac_file.read(),[]) #Definindo classe Draconico
@@ -319,7 +319,7 @@ def help():
         for classe in num_classes:#Loop que seleciona a classe para ser verificada
             if qual_classe == classe.name:#Verificando se o nome dado pelo player bate com o nome dado na variavel
                 print(f"Informacoes sobre a classe: '{classe.name}':\n{classe.info}")#Imprimindo as informacoes detalhadas da classe selecionada
-        with open("Rpg_finalizado/Playable_classes.txt","r") as file: #Abrindo arquivo das classes jogaveis
+        with open("RPG/Playable_classes.txt","r") as file: #Abrindo arquivo das classes jogaveis
             if f"{qual_classe}\n" not in file.readlines(): #verificando se o nome dado pelo player nao esta no arquivo de classes jogaveis
                 print("Classe nao encontrada! Tente novamente.") #imprimindo que o a classe dada pelo player nao e jogavel
                 help() #Executando a funcao help denovo
@@ -332,7 +332,7 @@ while setado != 0:
         if qual_classe == "@Adm":
             print("Entrando em modo adm...")
             break
-        with open("Rpg_finalizado/Playable_classes.txt","r") as file:
+        with open("RPG/Playable_classes.txt","r") as file:
             if qual_classe == "Help":
                 help()
                 setado = None
@@ -340,7 +340,7 @@ while setado != 0:
                 print(f"A classe {qual_classe} nao e reconhecida como uma classe jogavel! Tente novamente.")
                 setado = None
             else:
-                with open("Rpg_finalizado/Playable_classes.txt","r") as file:
+                with open("RPG/Playable_classes.txt","r") as file:
                     for line in file.readlines():
                             if f"{qual_classe}\n" == line:
                                 for classe in num_classes:
@@ -353,13 +353,14 @@ while setado != 0:
 #Funcao de escrever classes em um txt
 def writing_classes():
         for classe in num_classes:
-            with open("RPG_finalizado/Playable_classes.txt","r") as file_r:
+            with open("RPG/Playable_classes.txt","r") as file_r:
                 if f"{classe.name}\n" in file_r.readlines():
                     print(f"A classe {classe.name} ja esta salva!")
                 else:
-                     with open("RPG_finalizado/Playable_classes.txt","a") as file_w:
+                     with open("RPG/Playable_classes.txt","a") as file_w:
                           file_w.write(f"{classe.name}\n")
 
 ouro = espadas("Espada de ouro", 1, 1, 1, [golpe_flamejante_espada, ataque_rapido_espada])
 player.escolhendo_ataque
 player.atacar(ouro,lvl_2)
+print("\n\n♡ ♡ ♡\n\n")
