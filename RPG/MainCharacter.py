@@ -740,28 +740,28 @@ def english_version():
     #Funcao de ajuda que sera utilizada no comeco do codigo
     def help():
         for classe in num_classes: #(Loop and Print) -> para informar as informacoes basicas de cada classe presente na lista de classes
-            print(f"\nInformacoes da classe {classe.name}\nNome:{classe.name}\nVida:{classe.life}\nMana:{classe.mana}\nDano-Base:{classe.base_damage}\nBarulho:{classe.noise}\nAtaques:")
+            print(f"\nClass information {classe.name}\nName:{classe.name}\nLife:{classe.life}\nMana:{classe.mana}\nBase-damage:{classe.base_damage}\nNoise:{classe.noise}\nAttacks:")
             for numero, ataque in enumerate(classe.ataques, start=1):
                 print(f"    {numero}. {ataque.nome}")
             print("---------------------------//---------------------------")
-        qual_classe = str(input("Digite 'continue' caso deseije selecionar alguma classe ou digite o nome da classe para descobrir mais sobre ela: ")).title().strip()#Perguntando para o player qual a classe ele quer informacoes detalhadas ou se ele nao precisa mais delas
-        #IF statement que define se o usuario vai seguir para escolher a classe ou se ele que saber a informacao de alguma classe
+        qual_classe = str(input("Type 'continue'if you would like to select a class or type the name of the class to know more about it.: ")).title().strip()#Perguntando para o player qual a classe ele quer informacoes detalhadas ou se ele nao precisa mais delas
+        #IF statement que define se o usuario vai seguir para escolher a classe ou se ele que saber a informacao de alguma classse 
         if qual_classe == "Continue":
             pass
         else:
             for classe in num_classes:#Loop que seleciona a classe para ser verificada
                 if qual_classe == classe.name:#Verificando se o nome dado pelo player bate com o nome dado na variavel
-                    print(f"Informacoes sobre a classe: '{classe.name}':\n{classe.info}")#Imprimindo as informacoes detalhadas da classe selecionada
+                    print(f"Class information: '{classe.name}':\n{classe.info}")#Imprimindo as informacoes detalhadas da classe selecionada
             with open("RPG/Playable_classes.txt","r") as file: #Abrindo arquivo das classes jogaveis
                 if f"{qual_classe}\n" not in file.readlines(): #verificando se o nome dado pelo player nao esta no arquivo de classes jogaveis
-                    print("Classe nao encontrada! Tente novamente.") #imprimindo que o a classe dada pelo player nao e jogavel
+                    print("Class not found. Please try again or contact the dev.") #imprimindo que o a classe dada pelo player nao e jogavel
                     help() #Executando a funcao help denovo
 
 
     setado = None
     while setado != 0:
         try:
-            qual_classe = str(input("Digite o nome da classe ou digite 'help' para saber as informacoes sobre uma determinada classe.\n.:")).strip().title()
+            qual_classe = str(input("Type the name of the class or type help for more details.\n.:")).strip().title()
             if qual_classe == "@Adm":
                 print("Entrando em modo adm...")
                 break
@@ -770,7 +770,7 @@ def english_version():
                     help()
                     setado = None
                 elif f"{qual_classe}\n" not in file.readlines():
-                    print(f"A classe {qual_classe} nao e reconhecida como uma classe jogavel! Tente novamente.")
+                    print(f"The class {qual_classe} is not recognized as a playable class! Please try again.")
                     setado = None
                 else:
                     with open("RPG/Playable_classes.txt","r") as file:
@@ -779,21 +779,21 @@ def english_version():
                                     for classe in num_classes:
                                         if qual_classe == classe.name:
                                             player = Main_character_class(classe,classe.life,classe.base_damage,classe.mana,0,2,3,100,classe.noise)
-                                            print(f"\nPlayer:{player.nome}\nClasse:{player.classe.name}\nVida:{player.vida}\nEstamina:{player.estamina}\nDano:{player.dano}\nMana:{player.mana}\nSaturacao:{player.saturacao}\nArmadura-mana:{player.armadura_mana}\nArmadura-defesa:{player.armadura}\n\n")
+                                            print(f"\nPlayer:{player.nome}\nClass:{player.classe.name}\nLife:{player.vida}\nEstamina:{player.estamina}\nDamage:{player.dano}\nMana:{player.mana}\nSaturation:{player.saturacao}\nArmor-mana:{player.armadura_mana}\nArmor-defense:{player.armadura}\n\n")
                                             setado=0
         except ValueError:
-            print("Tente novamente.")
+            print("Try again.")
     #Funcao de escrever classes em um txt
     def writing_classes():
             for classe in num_classes:
                 with open("RPG/Playable_classes.txt","r") as file_r:
                     if f"{classe.name}\n" in file_r.readlines():
-                        print(f"A classe {classe.name} ja esta salva!")
+                        print(f"The class {classe.name} has already been saved!")
                     else:
                         with open("RPG/Playable_classes.txt","a") as file_w:
                             file_w.write(f"{classe.name}\n")
 
-    ouro = espadas("Espada de ouro", 1, 1, 1, [golpe_flamejante_espada, ataque_rapido_espada])
+    ouro = espadas("Golden sword", 1, 1, 1, [golpe_flamejante_espada, ataque_rapido_espada])
     player.escolhendo_ataque
     player.atacar(ouro, lvl_10)
     writing_classes()
