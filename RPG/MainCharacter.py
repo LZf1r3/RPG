@@ -70,6 +70,7 @@ def start():
                 playable = False
 
 def portuguese_version():
+    import portuguese_story as pt_br
     #Definindo as classe jogaveis tipo (Mago, Elfo, etc...)
     class Classes:
         def __init__(self, name, damage, life, mana, noise, info, ataques):
