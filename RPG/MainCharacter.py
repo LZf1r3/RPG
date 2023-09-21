@@ -25,7 +25,7 @@ def start():
                     languages = ["Portugues BR", "English", "Español", "Français"]
                     for num, language in enumerate(languages, start=1):
                         print(f"\n{num}. {language}")
-                    qual_lingua = int(input("Type the number of your language:"))
+                    qual_lingua = int(input("Type the number of your language: "))
                     if qual_lingua not in range(1 + len(languages)):
                         print("Number out of range! please try again with another number or contact (Discord:LZ#9461)")
                         language_selected = False
