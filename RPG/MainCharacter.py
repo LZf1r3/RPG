@@ -1,7 +1,7 @@
 
-def start():
-    qual_lingua = 2
-    playable = False
+def start(): #Funcao de iniciacao do codigo de RPG
+    qual_lingua = 2 #Varivale para loop de escolha de lingua
+    playable = False 
     info_menu = ["Languages", "Settings", "Play"]
     while playable != True:
         if qual_lingua == 1:
